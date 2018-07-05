@@ -11,6 +11,11 @@ import { map } from 'rxjs/operators';
 export class NavbarComponent {
 
   title: string = '大学生 | 解忧杂货店';
+  tags: string[] = [
+    '专业',
+    '考研',
+    '留学'
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
