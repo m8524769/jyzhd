@@ -9,9 +9,16 @@
     <mat-toolbar color="primary">
       <mat-icon>menu</mat-icon>
     </mat-toolbar>
+
+    <mat-nav-list *ngFor="let tag of tags2">
+      <a mat-list-item href="#">{{ tag }}</a>
+    </mat-nav-list>
+<hr>
     <mat-nav-list *ngFor="let tag of tags">
       <a mat-list-item href="#">{{ tag }}</a>
     </mat-nav-list>
+
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">

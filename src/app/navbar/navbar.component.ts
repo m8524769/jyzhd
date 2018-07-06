@@ -12,9 +12,14 @@ export class NavbarComponent {
 
   title: string = '大学生 | 解忧杂货店';
   tags: string[] = [
-    '专业',
-    '考研',
-    '留学'
+    '毕业-就业',
+    '毕业-考研',
+    '毕业-留学'
+  ];
+  tags2: string[] = [
+    '大学-生活',
+    '大学-专业',
+    '大学-学习'
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
