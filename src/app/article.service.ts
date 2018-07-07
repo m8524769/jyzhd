@@ -1,26 +1,41 @@
-// import { Injectable } from '@angular/core';
-import { Article } from './article';
-import { ARTICLES } from './mock-article';
-import { Observable, of } from 'rxjs';
-
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
-// @Injectable()
-// export class ConfigService {
-  
-// }
+import { Article } from './article';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ArticleService {
-constructor(private http: HttpClient) { }
-  
 
-  getArticles():Observable<Article[]>{
-    return of (ARTICLES);
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  private articleUrl = 'api/article';
+
+  getArticles(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.articleUrl).pipe(
+      catchError(this.handleError('getHeroes', []))
+    );
   }
+
+  getArticle(id: number): Observable<Article> {
+    const url = `${this.articleUrl}/${id}`;
+    return this.http.get<Article>(url).pipe(
+      catchError(this.handleError<Article>(`getArticle id=${id}`))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
+  }
+
 }
