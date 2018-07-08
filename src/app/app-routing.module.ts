@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ArticleComponent } from './article/article.component';
+import { ArticleListComponent } from './article/article-list/article-list.component';
 
 const routes: Routes = [
   {
-    path: 'articles',
-    component: ArticleComponent
-  }
-
+    path: '',
+    component: ArticleListComponent
+  },
 ]
 
 @NgModule({

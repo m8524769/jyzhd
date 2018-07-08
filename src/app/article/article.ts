@@ -3,5 +3,5 @@ export class Article {
     title: string;
     created: Date;
     content: string;
-    approved: boolean
+    approved: boolean;
 }
