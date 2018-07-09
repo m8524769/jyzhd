@@ -17,12 +17,14 @@ import {
   MatMenuModule
 } from '@angular/material';
 import { NavbarComponent } from './layout/navbar/navbar.component'
-import { ArticleModule } from './article/article.module'
+import { ArticleModule } from './article/article.module';
+import { PostComponent } from './post/post.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
