@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Article } from './article';
+import { Article } from './model/article';
 
 @Injectable({
   providedIn: 'root',

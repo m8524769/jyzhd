@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { Post } from '../model/post-model';
-import { PostDetailService } from './services/post-detail.service';
+import { Post } from '../model/post';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -12,9 +12,9 @@ import { PostDetailService } from './services/post-detail.service';
 export class PostDetailComponent implements OnInit {
   public post: Post = new Post();
 
-  constructor(public postDetailService: PostDetailService,
+  constructor(public postDetailService: PostService,
       public activeRoute: ActivatedRoute
-  ) { 
+  ) {
     console.log(this.postDetailService);
   }
 

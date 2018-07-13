@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Post } from '../../model/post-model';
+import { Post } from './model/post';
 
 @Injectable()
-export class PostDetailService {
-    public postDetailURL = "mock-data/post-mock.json";
+export class PostService {
+    public postURL = "mock-data/post-mock.json";
 
-    constructor(public http: Http) { 
+    constructor(public http: Http) {
     }
 
     // public getPost(id:number):Observable<Post>{
