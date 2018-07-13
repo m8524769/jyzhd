@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from '../model/article';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-article-content',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleContentComponent implements OnInit {
 
-  constructor() { }
+  article: Article;
+
+  constructor(
+    private articleService: ArticleService
+  ) { }
 
   ngOnInit() {
+  }
+
+  getArticles(): void {
+    // const id = +this.route.snapshot.paramMap.get('id');
+    this.articleService.getArticle(id:any)
+      .subscribe(article => this.article = article);
   }
 
 }
