@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { MatCardModule } from '@angular/material';
+import { ArticleContentComponent } from './article-content/article-content.component';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import { MatCardModule } from '@angular/material';
   ],
   declarations: [
     ArticleListComponent,
+    ArticleContentComponent,
   ],
   exports: [
     ArticleListComponent,
