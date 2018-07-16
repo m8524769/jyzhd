@@ -1,0 +1,21 @@
+<div>
+  <mat-form-field class="description">
+    <input matInput [(ngModel)]="description" placeholder="简要描述">
+  </mat-form-field>
+
+  <mat-form-field class="subject">
+    <input matInput [(ngModel)]="subject" placeholder="所属学科">
+    <button mat-button *ngIf="subject" matSuffix mat-icon-button aria-label="Clear" (click)="subject=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-form-field class="note-content">
+  <textarea matInput [(ngModel)]="content" rows="28" placeholder="Markdown"></textarea>
+</mat-form-field>
+
+<div>
+  <mat-checkbox [(ngModel)]="readonly">只读</mat-checkbox>
+  <button mat-raised-button color="primary" (click)="commit()">创建笔记</button>
+</div>
