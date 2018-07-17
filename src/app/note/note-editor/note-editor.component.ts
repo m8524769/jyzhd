@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NoteService } from '../note.service';
 import { Note } from '../model/note';
 import { User } from '../../user/model/user';
@@ -12,18 +13,19 @@ import { MatSnackBar } from '@angular/material';
 export class NoteEditorComponent implements OnInit {
 
   description: string;
-  content: string;
   subject: string;
+  content: string;
   readonly: boolean;
   author: User;
 
   constructor(
+    private router: Router,
     private noteService: NoteService,
     public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
-    this.description = '';
+    // Todo: 获取 User
     this.readonly = false;
   }
 
@@ -34,11 +36,14 @@ export class NoteEditorComponent implements OnInit {
       }
     }
     this.noteService.createNote(new Note(
-      this.description,files,this.subject,this.author,this.readonly
-    )).subscribe(note => {
-      if (note) {
-        console.log(note);
-        this.snackBar.open('创建成功！');
+      this.description,this.subject,this.author,files,this.readonly
+    )).subscribe(response => {
+      if (response) {
+        console.log(response);
+        let snackBarRef = this.snackBar.open('创建成功！', '查看我的笔记');
+        snackBarRef.onAction().subscribe(() => {
+          this.router.navigateByUrl("note/mine");
+        })
       }
     });
   }

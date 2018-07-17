@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
+import { Note } from '../model/note';
 import { User } from '../../user/model/user';
 
 @Component({
-  selector: 'app-note-dashboard',
-  templateUrl: './note-dashboard.component.html',
-  styleUrls: ['./note-dashboard.component.css']
+  selector: 'app-note-mine',
+  templateUrl: './note-mine.component.html',
+  styleUrls: ['./note-mine.component.css']
 })
-export class NoteDashboardComponent implements OnInit {
+export class NoteMineComponent implements OnInit {
 
   user: User;
   notes: Object[];
-  keywoard: string;
 
   constructor(
     private noteService: NoteService,
@@ -24,7 +24,7 @@ export class NoteDashboardComponent implements OnInit {
   }
 
   getNotes() {
-    this.noteService.getNotes(this.user, 'dashboard')
+    this.noteService.getNotes(this.user, 'mine')
       .subscribe(response => {
         for (let i in response) {
           this.notes.unshift(response[i])

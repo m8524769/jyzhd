@@ -4,18 +4,21 @@ import { Gist } from "./gist";
 export class Note {
     gistId: string;
     gist: Gist;
+    description: string;
     subject: string;
+    author: User;
     readonly: boolean;
 
     constructor(
         description: string,
-        files: Object,
         subject: string,
         author: User,
-        readonly: boolean,
+        files: Object = {},
+        readonly: boolean = false,
     ) {
         this.gist = new Gist(description, files);
         this.subject = subject;
+        this.author = author;
         this.readonly = readonly;
     }
 }

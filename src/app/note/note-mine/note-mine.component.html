@@ -1,15 +1,9 @@
 <mat-toolbar>
-  <mat-form-field class="search">
-    <input matInput type="text" placeholder="Search" [(ngModel)]="keywoard">
-    <button mat-button *ngIf="keywoard" matSuffix mat-icon-button aria-label="Clear" (click)="keywoard=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <a mat-fab routerLink="../editor" title="创建新笔记">
+  <h1>我的笔记</h1>
+  <a mat-fab routerLink="../editor">
     <mat-icon>edit</mat-icon>
   </a>
 </mat-toolbar>
-
 <mat-card *ngFor="let note of notes" class="note-card">
   <mat-card-title>{{ note.description }}</mat-card-title>
   <mat-card-subtitle>{{ note.subject }}</mat-card-subtitle>
