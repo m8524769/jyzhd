@@ -1,9 +1,13 @@
 <mat-toolbar>
   <h1>我的笔记</h1>
+
+  <a mat-raised-button routerLink="../dashboard">公共笔记区</a>
+
   <a mat-fab routerLink="../editor">
     <mat-icon>edit</mat-icon>
   </a>
 </mat-toolbar>
+
 <mat-card *ngFor="let note of notes" class="note-card">
   <mat-card-title>{{ note.description }}</mat-card-title>
   <mat-card-subtitle>{{ note.subject }}</mat-card-subtitle>

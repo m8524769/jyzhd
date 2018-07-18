@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
+import { UserService } from '../../user/user.service';
 import { Note } from '../model/note';
 import { User } from '../../user/model/user';
 
@@ -15,10 +16,11 @@ export class NoteMineComponent implements OnInit {
 
   constructor(
     private noteService: NoteService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
-    this.user = new User('ath1278352@gmail.com', 'Tony', 'vosed843');
+    this.user = this.userService.getInformation();
     this.notes = [];
     this.getNotes();
   }

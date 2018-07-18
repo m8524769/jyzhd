@@ -15,6 +15,7 @@ import { ArticleContentComponent } from './article-content/article-content.compo
   ],
   exports: [
     ArticleListComponent,
+    ArticleContentComponent,
   ]
 })
 export class ArticleModule { }

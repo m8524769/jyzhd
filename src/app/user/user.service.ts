@@ -1,9 +1,59 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { User } from './model/user';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  private information: User;
+  private userUrl = 'api/user';
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) { }
+
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.userUrl}/login`, {
+      email: email,
+      password: password
+    }).pipe(
+      catchError(this.handleError<User>('Login'))
+    );
+  }
+
+  register(email: string, nickname: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.userUrl}/register`, {
+      email: email,
+      nickname: nickname,
+      password: password
+    }).pipe(
+      catchError(this.handleError<User>('Register'))
+    );
+  }
+
+  keep(user): void {
+    this.information = user;
+  }
+
+  getInformation(): User {
+    if (this.information) {
+      return this.information;
+    } else {
+      this.router.navigateByUrl("user/login");
+    }
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
 }

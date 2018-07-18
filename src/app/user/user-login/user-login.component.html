@@ -1,3 +1,37 @@
-<p>
-  user-login works!
-</p>
+<mat-card>
+  <mat-form-field>
+    <mat-label>邮箱</mat-label>
+    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [(ngModel)]="email.value">
+    <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>密码</mat-label>
+    <input matInput [formControl]="password" [(ngModel)]="password.value">
+    <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="login()" [disabled]="email.invalid||password.invalid">登录</button>
+</mat-card>
+
+<mat-card>
+  <mat-form-field>
+    <mat-label>邮箱</mat-label>
+    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [(ngModel)]="email.value" required>
+    <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>昵称</mat-label>
+    <input matInput placeholder="至少4位字符" [formControl]="nickname" required>
+    <mat-error *ngIf="nickname.invalid">{{ checkNickname() }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>密码</mat-label>
+    <input matInput [formControl]="password" [(ngModel)]="password.value" required>
+    <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="register()" [disabled]="email.invalid||nickname.invalid||password.invalid">注册</button>
+</mat-card>

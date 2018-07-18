@@ -1,10 +1,12 @@
 export class User {
-    id: number;//用户id
-    userName: string;//用户名
-    nickName: string;
-    password: string;
-    remeberMe:boolean;
+    id: number;
     email: string;
-    confirmPassword: string;
-    vcode:string;//验证码
+    nickname: string;
+    password: string;
+
+    constructor(email: string, nickname: string, password: string) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
 }

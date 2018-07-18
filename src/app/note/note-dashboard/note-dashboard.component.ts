@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
+import { UserService } from '../../user/user.service';
 import { User } from '../../user/model/user';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-note-dashboard',
@@ -10,26 +13,37 @@ import { User } from '../../user/model/user';
 export class NoteDashboardComponent implements OnInit {
 
   user: User;
-  notes: Object[];
-  keywoard: string;
+  recommendations$: any;
+  searching: string;
+  notes$: Observable<any>;
+  private searchTerms = new Subject<string>();
 
   constructor(
     private noteService: NoteService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
-    this.user = new User('ath1278352@gmail.com', 'Tony', 'vosed843');
-    this.notes = [];
-    this.getNotes();
+    this.user = this.userService.getInformation();
+    this.getNotes('dashboard');
+    this.notes$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((keyword: string) =>
+        this.noteService.getNotes(this.user, 'search', keyword)
+      )
+    );
   }
 
-  getNotes() {
-    this.noteService.getNotes(this.user, 'dashboard')
-      .subscribe(response => {
-        for (let i in response) {
-          this.notes.unshift(response[i])
-        }
-      })
+  search(keyword: string): void {
+    this.searchTerms.next(keyword);
+  }
+
+  getNotes(type: string): void {
+    this.noteService.getNotes(this.user, type)
+      .subscribe(notes => {
+        this.recommendations$ = notes;
+      });
   }
 
 }

@@ -18,13 +18,13 @@ import {
 } from '@angular/material';
 import { NavbarComponent } from './layout/navbar/navbar.component'
 import { ArticleModule } from './article/article.module';
-import { PostComponent } from './post/post.component'
+import { NoteModule } from './note/note.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,8 @@ import { PostComponent } from './post/post.component'
     MatCardModule,
     MatMenuModule,
     ArticleModule,
+    NoteModule,
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

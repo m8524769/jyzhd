@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoteService } from '../note.service';
+import { UserService } from '../../user/user.service';
 import { Note } from '../model/note';
 import { User } from '../../user/model/user';
 import { MatSnackBar } from '@angular/material';
@@ -21,11 +22,12 @@ export class NoteEditorComponent implements OnInit {
   constructor(
     private router: Router,
     private noteService: NoteService,
+    private userService: UserService,
     public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
-    // Todo: 获取 User
+    this.author = this.userService.getInformation();
     this.readonly = false;
   }
 
