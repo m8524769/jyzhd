@@ -1,13 +1,13 @@
 <mat-card>
   <mat-form-field>
     <mat-label>邮箱</mat-label>
-    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [(ngModel)]="email.value">
+    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [value]="email.value">
     <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>密码</mat-label>
-    <input matInput [formControl]="password" [(ngModel)]="password.value">
+    <input matInput type="password" [formControl]="password" [value]="password.value">
     <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
   </mat-form-field>
 
@@ -17,7 +17,7 @@
 <mat-card>
   <mat-form-field>
     <mat-label>邮箱</mat-label>
-    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [(ngModel)]="email.value" required>
+    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [value]="email.value" required>
     <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
   </mat-form-field>
 
@@ -29,7 +29,7 @@
 
   <mat-form-field>
     <mat-label>密码</mat-label>
-    <input matInput [formControl]="password" [(ngModel)]="password.value" required>
+    <input matInput type="password" [formControl]="password" [value]="password.value" required>
     <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
   </mat-form-field>
 

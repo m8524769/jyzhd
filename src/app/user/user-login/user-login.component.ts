@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { User } from '../model/user';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -32,7 +31,7 @@ export class UserLoginComponent implements OnInit {
           this.userService.keep(user);
           this.router.navigateByUrl("note/dashboard");
         } else {
-          this.snackBar.open('邮箱或密码错误');
+          this.snackBar.open('邮箱或密码错误', '我改！');
         }
       });
   }
