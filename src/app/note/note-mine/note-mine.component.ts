@@ -3,6 +3,7 @@ import { NoteService } from '../note.service';
 import { UserService } from '../../user/user.service';
 import { Note } from '../model/note';
 import { User } from '../../user/model/user';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-note-mine',
@@ -15,6 +16,7 @@ export class NoteMineComponent implements OnInit {
   notes: Object[];
 
   constructor(
+    private sanitizer: DomSanitizer,
     private noteService: NoteService,
     private userService: UserService,
   ) { }
@@ -32,6 +34,10 @@ export class NoteMineComponent implements OnInit {
           this.notes.unshift(response[i])
         }
       })
+  }
+
+  gistPage(gistId: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(`/api/note/${gistId}`);
   }
 
 }

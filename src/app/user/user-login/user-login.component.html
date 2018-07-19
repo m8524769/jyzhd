@@ -1,4 +1,9 @@
 <mat-card>
+  <h1 *ngIf="!nickname.value">用户登录</h1>
+  <h1 *ngIf="nickname.value">Hi，{{ nickname.value }}！初次见面，请多多指教</h1>
+</mat-card>
+
+<mat-card>
   <mat-form-field>
     <mat-label>邮箱</mat-label>
     <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [value]="email.value">

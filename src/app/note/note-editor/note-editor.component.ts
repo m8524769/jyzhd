@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoteService } from '../note.service';
 import { UserService } from '../../user/user.service';
@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class NoteEditorComponent implements OnInit {
 
+  gistId: string;
   description: string;
   subject: string;
   content: string;
@@ -28,15 +29,44 @@ export class NoteEditorComponent implements OnInit {
 
   ngOnInit() {
     this.author = this.userService.getInformation();
+    this.gistId = this.noteService.getId();
     this.readonly = false;
+    if (this.gistId) {
+      console.log(this.gistId);
+      this.noteService.getInformation()
+        .subscribe(information => {
+          this.description = information.description;
+          this.subject = information.subject;
+          this.readonly = information.readonly;
+        });
+      this.noteService.getNote()
+        .subscribe(note => {
+          this.content = note.content;
+        });
+    }
   }
 
-  commit() {
+  modify(): void {
     const files = {
       "note.md": {
         "content": this.content
       }
-    }
+    };
+    this.noteService.modifyNote(this.description, this.subject, files)
+      .subscribe(() => {
+        let snackBarRef = this.snackBar.open('修改成功！', '返回');
+        snackBarRef.onAction().subscribe(() => {
+          this.router.navigateByUrl("note/dashboard");
+        })
+      })
+  }
+
+  commit(): void {
+    const files = {
+      "note.md": {
+        "content": this.content
+      }
+    };
     this.noteService.createNote(new Note(
       this.description,this.subject,this.author,files,this.readonly
     )).subscribe(response => {

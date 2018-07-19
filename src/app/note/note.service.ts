@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class NoteService {
 
+  private gistId: string;
   private noteUrl = 'api/note';
   private userUrl = 'api/user';
 
@@ -18,6 +19,34 @@ export class NoteService {
 
   createNote(note: Note): Observable<any> {
     return this.http.post(this.noteUrl, note);
+  }
+
+  modifyNote(description: string, subject: string, files: Object): Observable<any> {
+    return this.http.patch(`${this.noteUrl}/${this.gistId}`, {
+      description: description,
+      subject: subject,
+      files: files
+    });
+  }
+
+  keep(gistId: string): void {
+    this.gistId = gistId;
+  }
+
+  getId(): string {
+    return this.gistId;
+  }
+
+  clearId(): void {
+    this.gistId = null;
+  }
+
+  getInformation(): Observable<any> {
+    return this.http.get(`${this.noteUrl}/${this.gistId}/information`);
+  }
+
+  getNote(): Observable<any> {
+    return this.http.get(`${this.noteUrl}/${this.gistId}/content`);
   }
 
   getNotes(user: User, type: string, keyword: string = ''): Observable<any> {

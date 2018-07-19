@@ -4,6 +4,8 @@ import { UserService } from '../../user/user.service';
 import { User } from '../../user/model/user';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note-dashboard',
@@ -13,12 +15,14 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class NoteDashboardComponent implements OnInit {
 
   user: User;
-  recommendations$: any;
+  recommendations: any;
   searching: string;
   notes$: Observable<any>;
   private searchTerms = new Subject<string>();
 
   constructor(
+    private sanitizer: DomSanitizer,
+    private router: Router,
     private noteService: NoteService,
     private userService: UserService,
   ) { }
@@ -33,6 +37,7 @@ export class NoteDashboardComponent implements OnInit {
         this.noteService.getNotes(this.user, 'search', keyword)
       )
     );
+    this.noteService.clearId();
   }
 
   search(keyword: string): void {
@@ -42,8 +47,17 @@ export class NoteDashboardComponent implements OnInit {
   getNotes(type: string): void {
     this.noteService.getNotes(this.user, type)
       .subscribe(notes => {
-        this.recommendations$ = notes;
+        this.recommendations = notes;
       });
+  }
+
+  gistPage(gistId: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(`/api/note/${gistId}`)
+  }
+
+  modify(gistId: string): void {
+    this.noteService.keep(gistId);
+    this.router.navigateByUrl("note/editor");
   }
 
 }

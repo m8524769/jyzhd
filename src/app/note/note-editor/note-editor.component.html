@@ -17,6 +17,8 @@
 
 <div>
   <mat-checkbox [(ngModel)]="readonly" title="勾选后除自己外任何人都不能修改该笔记">只读</mat-checkbox>
-  <button mat-raised-button color="primary" (click)="commit()"
+  <button *ngIf="gistId" mat-raised-button color="primary" (click)="modify()"
+    [disabled]="!description||!subject||!content||readonly">提交修改</button>
+  <button *ngIf="!gistId" mat-raised-button color="primary" (click)="commit()"
     [disabled]="!description||!subject||!content">创建笔记</button>
 </div>

@@ -39,14 +39,31 @@ export class UserService {
 
   keep(user): void {
     this.information = user;
+    sessionStorage.setItem('user_id', user.id);
+    sessionStorage.setItem('nickname', user.nickname);
   }
 
   getInformation(): User {
     if (this.information) {
       return this.information;
+    } else if (sessionStorage.getItem('user_id')) {
+      const user: User = {
+        id: parseInt(sessionStorage.getItem('user_id')),
+        email: '',
+        nickname: sessionStorage.getItem('nickname'),
+        password: ''
+      }
+      return user;
     } else {
       this.router.navigateByUrl("user/login");
     }
+  }
+
+  logout(): void {
+    this.information = null;
+    sessionStorage.removeItem('user_id');
+    sessionStorage.removeItem('nickname');
+    this.router.navigateByUrl("user/login");
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

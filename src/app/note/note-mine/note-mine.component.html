@@ -11,8 +11,9 @@
 <mat-card *ngFor="let note of notes" class="note-card">
   <mat-card-title>{{ note.description }}</mat-card-title>
   <mat-card-subtitle>{{ note.subject }}</mat-card-subtitle>
+
   <mat-card-actions align="end">
-    <button mat-button>SHARE</button>
-    <a mat-button href="https://gist.github.com/psnote/{{ note.gistId }}" target="_blank">MORE</a>
+    <a mat-button [href]="gistPage(note.gistId)" target="_blank">阅读笔记</a>
+    <button mat-button>编辑</button>
   </mat-card-actions>
 </mat-card>

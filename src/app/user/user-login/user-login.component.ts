@@ -30,6 +30,7 @@ export class UserLoginComponent implements OnInit {
         if (user) { // Success
           this.userService.keep(user);
           this.router.navigateByUrl("note/dashboard");
+          this.snackBar.dismiss();
         } else {
           this.snackBar.open('邮箱或密码错误', '我改！');
         }
@@ -39,7 +40,7 @@ export class UserLoginComponent implements OnInit {
   register() {
     this.userService.register(this.email.value, this.nickname.value, this.password.value)
       .subscribe(user => {
-        let snackBarRef = this.snackBar.open(`Hi，${user.nickname}！您已注册成功！`, '登录该账户');
+        let snackBarRef = this.snackBar.open('注册成功！', '登录该账户');
         snackBarRef.onAction().subscribe(() => {
           this.login();
         })

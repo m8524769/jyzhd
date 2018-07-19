@@ -9,7 +9,7 @@
   <a mat-raised-button routerLink="../mine">我的笔记</a>
 
   <a mat-fab routerLink="../editor">
-    <mat-icon matTooltip="创建新笔记" matTooltipPosition="left">edit</mat-icon>
+    <mat-icon title="创建新笔记">edit</mat-icon>
   </a>
 </mat-toolbar>
 
@@ -19,20 +19,20 @@
     <mat-card-subtitle>{{ note.subject }}</mat-card-subtitle>
 
     <mat-card-actions align="end">
-      <button mat-button>SHARE</button>
-      <a mat-button href="https://gist.github.com/psnote/{{ note.gistId }}" target="_blank">MORE</a>
+      <a mat-button [href]="gistPage(note.gistId)" target="_blank">阅读笔记</a>
+      <button mat-button>编辑</button>
     </mat-card-actions>
   </mat-card>
 </div>
 
 <div *ngIf="!searching">
-  <mat-card *ngFor="let note of recommendations$" class="note-card">
+  <mat-card *ngFor="let note of recommendations" class="note-card">
     <mat-card-title>{{ note.description }}</mat-card-title>
     <mat-card-subtitle>{{ note.subject }}</mat-card-subtitle>
 
     <mat-card-actions align="end">
-      <button mat-button>SHARE</button>
-      <a mat-button href="https://gist.github.com/psnote/{{ note.gistId }}" target="_blank">MORE</a>
+      <a mat-button [href]="gistPage(note.gistId)" target="_blank">阅读笔记</a>
+      <a mat-button (click)="modify(note.gistId)">编辑</a>
     </mat-card-actions>
   </mat-card>
 </div>

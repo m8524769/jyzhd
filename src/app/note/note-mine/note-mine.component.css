@@ -1,11 +1,10 @@
 mat-toolbar {
-  max-width: 860px;
+  max-width: 870px;
   display: flex;
   justify-content: space-between;
 }
 
 mat-card.note-card {
-  min-width: 250px;
   max-width: 800px;
   width: 100%;
   margin: 1.2rem;
