@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { noteRoutes } from './note.routes';
 import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { NoteDashboardComponent } from './note-dashboard/note-dashboard.component';
-import { NoteContentComponent } from './note-content/note-content.component';
 import { NoteMineComponent } from './note-mine/note-mine.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -33,13 +32,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   declarations: [
     NoteEditorComponent,
     NoteDashboardComponent,
-    NoteContentComponent,
     NoteMineComponent,
   ],
   exports: [
     NoteEditorComponent,
     NoteDashboardComponent,
-    NoteContentComponent,
     NoteMineComponent,
   ]
 })

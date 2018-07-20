@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../note.service';
 import { UserService } from '../../user/user.service';
-import { Note } from '../model/note';
 import { User } from '../../user/model/user';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note-mine',
@@ -17,6 +17,7 @@ export class NoteMineComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
+    private router: Router,
     private noteService: NoteService,
     private userService: UserService,
   ) { }
@@ -25,6 +26,7 @@ export class NoteMineComponent implements OnInit {
     this.user = this.userService.getInformation();
     this.notes = [];
     this.getNotes();
+    this.noteService.clearId();
   }
 
   getNotes() {
@@ -36,8 +38,13 @@ export class NoteMineComponent implements OnInit {
       })
   }
 
-  gistPage(gistId: string) {
-    return this.sanitizer.bypassSecurityTrustUrl(`/api/note/${gistId}`);
+  gistPage(gistId: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(`/api/note/${gistId}`)
+  }
+
+  modify(gistId: string): void {
+    this.noteService.keep(gistId);
+    this.router.navigateByUrl("note/editor");
   }
 
 }
