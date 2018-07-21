@@ -32,7 +32,7 @@ export class NoteEditorComponent implements OnInit {
     this.gistId = this.noteService.getId();
     this.readonly = false;
     if (this.gistId) {
-      console.log(this.gistId);
+      // console.log(this.gistId);
       this.noteService.getInformation()
         .subscribe(information => {
           this.description = information.description;

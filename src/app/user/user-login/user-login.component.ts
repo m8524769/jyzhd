@@ -37,7 +37,7 @@ export class UserLoginComponent implements OnInit {
       });
   }
 
-  register() {
+  register(): void {
     this.userService.register(this.email.value, this.nickname.value, this.password.value)
       .subscribe(user => {
         let snackBarRef = this.snackBar.open('注册成功！', '登录该账户');
