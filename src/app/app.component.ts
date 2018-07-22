@@ -31,6 +31,7 @@ export class AppComponent {
 
   logout(): void {
     this.userService.logout();
+    this.nickname = '未登录';
   }
 
 }

@@ -18,7 +18,7 @@ export class NoteEditorComponent implements OnInit {
   subject: string;
   content: string;
   readonly: boolean;
-  author: User;
+  user: User;
 
   constructor(
     private router: Router,
@@ -28,11 +28,10 @@ export class NoteEditorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.author = this.userService.getInformation();
+    this.user = this.userService.getInformation();
     this.gistId = this.noteService.getId();
     this.readonly = false;
     if (this.gistId) {
-      // console.log(this.gistId);
       this.noteService.getInformation()
         .subscribe(information => {
           this.description = information.description;
@@ -68,7 +67,7 @@ export class NoteEditorComponent implements OnInit {
       }
     };
     this.noteService.createNote(new Note(
-      this.description,this.subject,this.author,files,this.readonly
+      this.description,this.subject,this.user,files,this.readonly
     )).subscribe(response => {
       if (response) {
         console.log(response);

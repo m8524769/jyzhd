@@ -1,10 +1,11 @@
 .main-router-outlet {
-    padding: 1.6rem 0.8rem;
-    /* background: ; */
+    height: 90vh;
+    display: flex;
+    justify-content: center;
 }
 
 .sidenav-container {
-    height: 100%;
+    height: 100vh;
 }
 
 .sidenav {

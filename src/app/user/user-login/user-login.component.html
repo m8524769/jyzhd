@@ -1,42 +1,68 @@
 <mat-card>
-  <h1 *ngIf="!nickname.value">用户登录</h1>
-  <h1 *ngIf="nickname.value">Hi，{{ nickname.value }}！初次见面，请多多指教</h1>
-</mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1 *ngIf="!nickname.value">用户登录</h1>
+      <h1 *ngIf="nickname.value">Hi，{{ nickname.value }}！初次见面，请多多指教</h1>
+    </mat-card-title>
+  </mat-card-header>
 
-<mat-card>
   <mat-form-field>
     <mat-label>邮箱</mat-label>
-    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [value]="email.value">
+    <input matInput placeholder="例：stack@gmail.com"
+      [formControl]="email" [value]="email.value">
     <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>密码</mat-label>
-    <input matInput type="password" [formControl]="password" [value]="password.value">
-    <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
+      <input matInput [type]="hidePassword ? 'password' : 'text'"
+        [formControl]="password" [value]="password.value">
+      <button matSuffix mat-icon-button (click)="hidePassword = !hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    <mat-error *ngIf="password.invalid"></mat-error>
   </mat-form-field>
 
-  <button mat-raised-button (click)="login()" [disabled]="email.invalid||password.invalid">登录</button>
+  <mat-card-actions align="end">
+    <button mat-raised-button (click)="login()"
+      [disabled]="email.invalid||password.invalid||isSubmitting">登录</button>
+  </mat-card-actions>
 </mat-card>
 
-<mat-card>
-  <mat-form-field>
-    <mat-label>邮箱</mat-label>
-    <input matInput placeholder="例：tonystack@gmail.com" [formControl]="email" [value]="email.value" required>
-    <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
-  </mat-form-field>
+<mat-accordion>
 
-  <mat-form-field>
-    <mat-label>昵称</mat-label>
-    <input matInput placeholder="至少4位字符" [formControl]="nickname" required>
-    <mat-error *ngIf="nickname.invalid">{{ checkNickname() }}</mat-error>
-  </mat-form-field>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-description>注册新用户</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-label>邮箱</mat-label>
+      <input matInput placeholder="例：stack@gmail.com"
+        [formControl]="email" [value]="email.value" required>
+      <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>密码</mat-label>
-    <input matInput type="password" [formControl]="password" [value]="password.value" required>
-    <mat-error *ngIf="password.invalid">{{ checkPassword() }}</mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>昵称</mat-label>
+      <input matInput placeholder="至少2位字符" [formControl]="nickname" required>
+      <mat-error *ngIf="nickname.invalid"></mat-error>
+    </mat-form-field>
 
-  <button mat-raised-button (click)="register()" [disabled]="email.invalid||nickname.invalid||password.invalid">注册</button>
-</mat-card>
+    <mat-form-field>
+      <mat-label>密码</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'"
+        [formControl]="password" [value]="password.value" required>
+      <button matSuffix mat-icon-button (click)="hidePassword = !hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid"></mat-error>
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-raised-button (click)="register()"
+        [disabled]="email.invalid||nickname.invalid||password.invalid||isSubmitting">注册</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>

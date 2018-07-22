@@ -35,7 +35,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatButtonModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

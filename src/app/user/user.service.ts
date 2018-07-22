@@ -68,7 +68,7 @@ export class UserService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.error}`);
       return of(result as T);
     };
   }
