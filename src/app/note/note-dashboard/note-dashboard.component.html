@@ -1,17 +1,20 @@
-<mat-toolbar>
+<mat-card>
   <mat-form-field class="search">
-    <input matInput #searchBox (keyup)="search(searchBox.value)" [(ngModel)]="searching" placeholder="Search">
+    <input matInput #searchBox (keyup)="search(searchBox.value)" [(ngModel)]="searching" placeholder="搜索笔记">
     <button mat-button *ngIf="keyword" matSuffix mat-icon-button aria-label="Clear" (click)="keyword=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
-  <a mat-raised-button routerLink="../mine">我的笔记</a>
+  <mat-card-actions align="end">
+    <a mat-raised-button routerLink="../mine">我的笔记</a>
+    <a mat-raised-button routerLink="../editor">创建新笔记</a>
+  </mat-card-actions>
+</mat-card>
 
-  <a mat-fab routerLink="../editor">
+  <!-- <a mat-fab routerLink="../editor">
     <mat-icon title="创建新笔记">edit</mat-icon>
-  </a>
-</mat-toolbar>
+  </a> -->
 
 <div *ngIf="searching">
   <mat-card *ngFor="let note of notes$ | async" class="note-card">

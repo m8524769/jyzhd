@@ -8,8 +8,8 @@
 
   <mat-form-field>
     <mat-label>邮箱</mat-label>
-    <input matInput placeholder="例：stack@gmail.com"
-      [formControl]="email" [value]="email.value">
+    <input matInput placeholder="例：tonystack@gmail.com"
+      [formControl]="email" [value]="email.value" autofocus>
     <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
   </mat-form-field>
 
@@ -25,7 +25,7 @@
 
   <mat-card-actions align="end">
     <button mat-raised-button (click)="login()"
-      [disabled]="email.invalid||password.invalid||isSubmitting">登录</button>
+      [disabled]="email.invalid || password.invalid || isSubmitting">登录</button>
   </mat-card-actions>
 </mat-card>
 
@@ -37,7 +37,7 @@
     </mat-expansion-panel-header>
     <mat-form-field>
       <mat-label>邮箱</mat-label>
-      <input matInput placeholder="例：stack@gmail.com"
+      <input matInput placeholder="例：tonystack@gmail.com"
         [formControl]="email" [value]="email.value" required>
       <mat-error *ngIf="email.invalid">{{ checkEmail() }}</mat-error>
     </mat-form-field>
@@ -60,7 +60,7 @@
 
     <mat-action-row>
       <button mat-raised-button (click)="register()"
-        [disabled]="email.invalid||nickname.invalid||password.invalid||isSubmitting">注册</button>
+        [disabled]="email.invalid || nickname.invalid || password.invalid || isSubmitting">注册</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

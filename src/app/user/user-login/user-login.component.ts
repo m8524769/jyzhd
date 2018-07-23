@@ -51,7 +51,10 @@ export class UserLoginComponent implements OnInit {
             this.login();
           })
         } else {
-          this.snackBar.open('该邮箱已被注册', '我换一个！');
+          let snackBarRef = this.snackBar.open('该邮箱已被注册', '我换一个！');
+          snackBarRef.onAction().subscribe(() => {
+            this.email.setValue('');
+          })
         }
         this.isSubmitting = false;
       });

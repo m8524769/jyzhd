@@ -1,17 +1,4 @@
-mat-toolbar {
-  max-width: 870px;
-  display: flex;
-  justify-content: space-between;
-}
-
 mat-form-field.search {
-  max-width: 530px;
   width: 100%;
   font-size: 1.8rem;
-}
-
-mat-card.note-card {
-  max-width: 800px;
-  width: 100%;
-  margin: 1.2rem;
 }
