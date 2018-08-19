@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { userRoutes } from './user.routes';
-import { UserLoginComponent } from './user-login/user-login.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+
+import { AuthLoginComponent } from './auth-login/auth-login.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -13,14 +17,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(userRoutes),
+    RouterModule.forRoot([{
+      path: 'login',
+      component: AuthLoginComponent
+    }]),
+    MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
@@ -29,15 +36,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressBarModule,
     MatExpansionModule,
     MatIconModule,
-    MatDialogModule,
   ],
   declarations: [
-    UserLoginComponent,
-    UserDashboardComponent,
+    AuthLoginComponent,
   ],
-  exports: [
-    UserLoginComponent,
-    UserDashboardComponent,
+  providers: [
+    AuthService,
+    AuthGuard
   ]
 })
-export class UserModule { }
+export class AuthModule { }

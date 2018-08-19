@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { User } from './model/user';
 import { tap, catchError } from 'rxjs/operators';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,12 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    public loginDialog: MatDialog,
   ) { }
+
+  openLoginDialog() {
+    // const dialogRef = this.loginDialog.open(UserLoginComponent);
+  }
 
   login(email: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.userUrl}/login`, {

@@ -1,3 +1,5 @@
+<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>
+
 <mat-card>
   <mat-card-header>
     <mat-card-title>
@@ -25,7 +27,7 @@
 
   <mat-card-actions align="end">
     <button mat-raised-button (click)="login()"
-      [disabled]="email.invalid || password.invalid || isSubmitting">Sign in</button>
+      [disabled]="email.invalid || password.invalid || isSubmitting">Login</button>
   </mat-card-actions>
 </mat-card>
 
@@ -64,5 +66,3 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-
-<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate"></mat-progress-bar>

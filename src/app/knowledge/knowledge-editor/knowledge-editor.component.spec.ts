@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArticleContentComponent } from './article-content.component';
+import { KnowledgeEditorComponent } from './knowledge-editor.component';
 
-describe('ArticleContentComponent', () => {
-  let component: ArticleContentComponent;
-  let fixture: ComponentFixture<ArticleContentComponent>;
+describe('KnowledgeEditorComponent', () => {
+  let component: KnowledgeEditorComponent;
+  let fixture: ComponentFixture<KnowledgeEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticleContentComponent ]
+      declarations: [ KnowledgeEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArticleContentComponent);
+    fixture = TestBed.createComponent(KnowledgeEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

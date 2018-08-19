@@ -12,10 +12,6 @@
   </mat-card-actions>
 </mat-card>
 
-  <!-- <a mat-fab routerLink="../editor">
-    <mat-icon title="创建新笔记">edit</mat-icon>
-  </a> -->
-
 <div *ngIf="searching">
   <mat-card *ngFor="let note of notes$ | async" class="note-card">
     <mat-card-title>{{ note.description }}</mat-card-title>
