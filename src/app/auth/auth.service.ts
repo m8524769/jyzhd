@@ -46,7 +46,7 @@ export class AuthService {
 
   private handleError<T>(operation = 'Operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.error, 'Understand');
+      this.snackBar.open(error.error, 'Got it');
       console.log(`${operation} failed: ${error.error}`);
       return of(result as T);
     };

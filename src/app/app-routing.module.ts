@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/note/dashboard',
+    redirectTo: '/knowledge',
     pathMatch: 'full'
   },
   // {

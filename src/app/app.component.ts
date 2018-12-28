@@ -19,36 +19,56 @@ export class AppComponent {
     );
   navItems: Object[] = [
     {
-      title: 'Public notes',
-      children: [
+      title: 'Fragmented Knowledge',
+      expand: true,
+      routes: [
         {
           name: 'Dashboard',
-          route: '/note/dashboard',
+          path: '/knowledge',
         },
         {
-          name: 'My notes',
-          route: '/note/mine',
+          name: 'My Collections',
+          path: '/knowledge/collections'
         },
         {
-          name: 'Create new note',
-          route: '/note/create',
+          name: 'Discover',
+          path: '/knowledge/discover',
+        },
+        {
+          name: 'Create Something New',
+          path: '/knowledge/create',
         },
       ]
     },
     {
-      title: 'Fragmented knowledge',
-      children: [
+      title: 'Public Notes',
+      expand: false,
+      routes: [
         {
-          name: 'Discover',
-          route: '/knowledge',
+          name: 'Dashboard',
+          path: '/note/dashboard',
         },
         {
-          name: 'My knowledge',
-          route: '/knowledge/mine',
+          name: 'My Notes',
+          path: '/note/mine',
         },
         {
-          name: 'Create something new',
-          route: '/knowledge/create',
+          name: 'Create New Note',
+          path: '/note/create',
+        },
+      ]
+    },
+    {
+      title: 'Forums',
+      expand: false,
+      routes: [
+        {
+          name: 'All Topics',
+          path: '/forums'
+        },
+        {
+          name: 'Post New Thread',
+          path: '/forums/post'
         },
       ]
     },

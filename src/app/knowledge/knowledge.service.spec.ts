@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { KnowledgeService } from './knowledge.service';
+import { KnowledgeService } from './shared/knowledge.service';
 
 describe('KnowledgeService', () => {
   beforeEach(() => {

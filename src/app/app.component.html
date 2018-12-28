@@ -12,16 +12,16 @@
 
     </mat-toolbar>
 
-    <mat-accordion *ngFor="let item of navItems">
-      <mat-expansion-panel>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of navItems" [expanded]="item.expand">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{ item.title }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-nav-list *ngFor="let child of item.children">
-          <a mat-list-item [routerLink]="child.route">
-            {{ child.name }}
+        <mat-nav-list *ngFor="let route of item.routes">
+          <a mat-list-item [routerLink]="route.path">
+            {{ route.name }}
           </a>
         </mat-nav-list>
       </mat-expansion-panel>
