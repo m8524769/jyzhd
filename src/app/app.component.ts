@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { AuthService } from './auth/auth.service';
 
 export class AppComponent {
   title: string = 'Jyzhd-next';
-  nickname: string = sessionStorage.getItem('nickname');
+  nickname: string = 'Guest';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -75,14 +76,15 @@ export class AppComponent {
   ];
 
   constructor(
+    private router: Router,
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
   ) { }
 
   logout(): void {
     this.authService.logout().subscribe(() => {
-      this.nickname = null;
-      // Redirect
+      this.nickname = 'Guest';
+      this.router.navigateByUrl("/");
     });
   }
 

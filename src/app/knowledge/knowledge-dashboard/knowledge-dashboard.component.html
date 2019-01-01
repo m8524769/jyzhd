@@ -1,3 +1,11 @@
-<p>
-  knowledge-dashboard works!
-</p>
+<mat-card-title>
+  Share Your Knowledge, Gain Some More
+</mat-card-title>
+
+<mat-tab-group (selectedIndexChange)="switchTo(tabs[$event].route)">
+  <mat-tab *ngFor="let tab of tabs" [label]="tab.label">
+    <router-outlet></router-outlet>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- <router-outlet></router-outlet> -->

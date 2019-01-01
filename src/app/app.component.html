@@ -1,8 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [mode]="(isHandset$ | async) ? 'over' : 'side'">
     <mat-toolbar color="primary">
-      <!-- <button *ngIf="nickname" mat-button [matMenuTriggerFor]="profile">{{ nickname }}</button> -->
-      <button mat-button [matMenuTriggerFor]="profile">User</button>
+      <button mat-button [matMenuTriggerFor]="profile">{{ nickname }}</button>
       <mat-menu #profile="matMenu">
         <button mat-menu-item>Your profile</button>
         <mat-divider></mat-divider>

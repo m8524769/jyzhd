@@ -17,6 +17,12 @@ const knowledgeRoutes: Routes = [{
         {
             path: 'discover',
             component: KnowledgeDiscoverComponent,
+            children: [
+                {
+                    path: ':id',
+                    component: KnowledgeViewComponent,
+                }
+            ]
         },
         {
             path: 'collections',

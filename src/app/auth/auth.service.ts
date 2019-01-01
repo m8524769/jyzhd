@@ -9,6 +9,9 @@ import { MatDialogRef, MatSnackBarRef, MatSnackBar } from '@angular/material';
 export class AuthService {
 
   isLoggedIn: boolean = false;
+  userId: number;
+  nickname: string;
+
   redirectUrl: string;
   authDialogRef: MatDialogRef<any>;
   private authUrl = 'api/auth';
@@ -29,7 +32,11 @@ export class AuthService {
       email: email,
       password: password
     }).pipe(
-      tap(() => this.isLoggedIn = true),
+      tap(response => {
+        this.isLoggedIn = true;
+        this.userId = response.id;
+        this.nickname = response.nickname;
+      }),
       catchError(this.handleError<any>('Login'))
     );
   }

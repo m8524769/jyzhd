@@ -25,7 +25,8 @@ export class NoteService {
     return this.http.patch(`${this.noteUrl}/${this.gistId}`, {
       description: description,
       subject: subject,
-      files: files
+      files: files,
+      id: 9,
     });
   }
 

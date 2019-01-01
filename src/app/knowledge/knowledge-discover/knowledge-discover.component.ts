@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { KnowledgeService } from '../shared/knowledge.service';
 
 @Component({
   selector: 'app-knowledge-discover',
@@ -8,9 +9,23 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class KnowledgeDiscoverComponent implements OnInit {
 
-  constructor() { }
+  page: Object[];
+  knowledge: any;
+
+  constructor(
+    private router: Router,
+    private knowledgeService: KnowledgeService,
+  ) { }
 
   ngOnInit() {
+    this.getPage();
+  }
+
+  getPage(page: number = 1, limit: number = 10): void {
+    this.knowledgeService.getPage(page, limit)
+      .subscribe(page => {
+        this.page = page;
+      });
   }
 
 }
