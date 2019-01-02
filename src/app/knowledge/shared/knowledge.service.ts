@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class KnowledgeService {
 
   private knowledgeUrl = 'api/knowledge';
+  private userUrl = 'api/user';
 
   constructor(
     private http: HttpClient,
@@ -24,6 +25,10 @@ export class KnowledgeService {
         .set('page', String(page))
         .set('limit', String(limit))
     });
+  }
+
+  getCollections(userId: number, page: number, limit: number): Observable<any> {
+    return this.http.get(`${this.userUrl}/${userId}/knowledge`);
   }
 
   search(keyword: string, page: number, limit: number) {

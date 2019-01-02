@@ -51,24 +51,19 @@ export class AuthLoginComponent implements OnInit {
       });
   }
 
-  // signUp(): void {
-  //   this.isSubmitting = true;
-  //   this.userService.register(this.email.value, this.nickname.value, this.password.value)
-  //     .subscribe(user => {
-  //       if (user) { // Success
-  //         let snackBarRef = this.snackBar.open('注册成功！', '登录该账户');
-  //         snackBarRef.onAction().subscribe(() => {
-  //           this.login();
-  //         })
-  //       } else {
-  //         let snackBarRef = this.snackBar.open('该邮箱已被注册', '我换一个！');
-  //         snackBarRef.onAction().subscribe(() => {
-  //           this.email.setValue('');
-  //         })
-  //       }
-  //       this.isSubmitting = false;
-  //     });
-  // }
+  signUp(): void {
+    this.isSubmitting = true;
+    this.authService.register(this.email.value, this.password.value, this.nickname.value)
+      .subscribe(user => {
+        this.isSubmitting = false;
+        if (user) { // Success
+          let snackBarRef = this.snackBar.open('Register Successfully!', 'Login');
+          snackBarRef.onAction().subscribe(() => {
+            this.login();
+          })
+        }
+      });
+  }
 
   checkEmail(): string {
     return this.email.hasError('email') ? '格式不对啊兄弟' : '';

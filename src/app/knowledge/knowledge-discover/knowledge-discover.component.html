@@ -1,6 +1,6 @@
-<mat-card-title>
+<!-- <mat-card-title>
   Discover New Knowledge!
-</mat-card-title>
+</mat-card-title> -->
 
 <mat-card *ngFor="let knowledge of page" class="item-card">
   <mat-card-header>
@@ -12,6 +12,10 @@
     <button mat-button>LIKE</button>
     <button mat-button routerLink="./{{ knowledge.id }}">VIEW</button>
   </mat-card-actions>
+</mat-card>
+
+<mat-card class="item-card">
+  <mat-card-subtitle>Nothing More</mat-card-subtitle>
 </mat-card>
 
 <router-outlet></router-outlet>

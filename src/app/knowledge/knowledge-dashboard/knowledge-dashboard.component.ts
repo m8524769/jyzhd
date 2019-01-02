@@ -10,20 +10,16 @@ export class KnowledgeDashboardComponent implements OnInit {
 
   tabs: Object[] = [
     {
-      label: 'Dashboard',
-      route: 'knowledge'
-    },
-    {
       label: 'Discover',
-      route: 'knowledge/discover'
+      route: 'knowledge/discover',
     },
     {
       label: 'My Collections',
-      route: 'knowledge/collections'
+      route: 'knowledge/collections',
     },
     {
-      label: 'Create Something New',
-      route: 'knowledge/create'
+      label: 'Create',
+      route: 'knowledge/create',
     },
   ]
 
@@ -35,7 +31,6 @@ export class KnowledgeDashboardComponent implements OnInit {
   }
 
   switchTo(route: string): void {
-    console.log(route)
     this.router.navigateByUrl(route);
   }
 

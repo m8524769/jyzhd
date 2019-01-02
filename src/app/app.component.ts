@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  title: string = 'Jyzhd-next';
+  title: string = 'JYZHD NEXT';
   nickname: string = 'Guest';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

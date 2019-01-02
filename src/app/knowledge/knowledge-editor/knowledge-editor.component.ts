@@ -40,7 +40,7 @@ export class KnowledgeEditorComponent implements OnInit {
       if (response) {
         let snackBarRef = this.snackBar.open('Created Successfully!', 'Got it');
         snackBarRef.onAction().subscribe(() => {
-          this.router.navigateByUrl("knowledge");
+          this.router.navigateByUrl("knowledge/collections");
         })
       }
     })

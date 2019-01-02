@@ -15,35 +15,35 @@ const knowledgeRoutes: Routes = [{
     component: KnowledgeComponent,
     children: [
         {
-            path: 'discover',
-            component: KnowledgeDiscoverComponent,
-            children: [
-                {
-                    path: ':id',
-                    component: KnowledgeViewComponent,
-                }
-            ]
-        },
-        {
-            path: 'collections',
-            component: KnowledgeCollectionsComponent,
-            canActivate: [AuthGuard],
-            children: [
-                {
-                    path: ':id',
-                    component: KnowledgeViewComponent,
-                }
-            ]
-        },
-        {
-            path: 'create',
-            component: KnowledgeEditorComponent,
-            canActivate: [AuthGuard],
-        },
-        {
             path: '',
             component: KnowledgeDashboardComponent,
             children: [
+                {
+                    path: 'discover',
+                    component: KnowledgeDiscoverComponent,
+                    children: [
+                        {
+                            path: ':id',
+                            component: KnowledgeViewComponent,
+                        }
+                    ]
+                },
+                {
+                    path: 'collections',
+                    component: KnowledgeCollectionsComponent,
+                    canActivate: [AuthGuard],
+                    children: [
+                        {
+                            path: ':id',
+                            component: KnowledgeViewComponent,
+                        }
+                    ]
+                },
+                {
+                    path: 'create',
+                    component: KnowledgeEditorComponent,
+                    canActivate: [AuthGuard],
+                },
                 {
                     path: ':id',
                     component: KnowledgeViewComponent,

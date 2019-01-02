@@ -10,7 +10,6 @@ import { KnowledgeService } from '../shared/knowledge.service';
 export class KnowledgeDiscoverComponent implements OnInit {
 
   page: Object[];
-  knowledge: any;
 
   constructor(
     private router: Router,

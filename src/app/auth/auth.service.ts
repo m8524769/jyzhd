@@ -9,8 +9,8 @@ import { MatDialogRef, MatSnackBarRef, MatSnackBar } from '@angular/material';
 export class AuthService {
 
   isLoggedIn: boolean = false;
-  userId: number;
-  nickname: string;
+  userId: number = Number(sessionStorage.getItem('userId'));
+  nickname: string = sessionStorage.getItem('nickname');
 
   redirectUrl: string;
   authDialogRef: MatDialogRef<any>;
@@ -36,15 +36,33 @@ export class AuthService {
         this.isLoggedIn = true;
         this.userId = response.id;
         this.nickname = response.nickname;
+        this.storeUser();
       }),
       catchError(this.handleError<any>('Login'))
     );
+  }
+
+  register(email: string, password: string, nickname): Observable<any> {
+    return this.http.post(`${this.authUrl}/register`, {
+      email: email,
+      password: password,
+      nickname: nickname,
+    }).pipe(
+      catchError(this.handleError<any>('Register'))
+    );
+  }
+
+  storeUser(): void {
+    sessionStorage.setItem('userId', String(this.userId));
+    sessionStorage.setItem('nickname', this.nickname);
   }
 
   logout(): Observable<boolean> {
     return this.http.get<any>(`${this.authUrl}/logout`).pipe(
       tap(() => {
         this.isLoggedIn = false;
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('nickname');
         return of(true);
       }),
       catchError(this.handleError<any>('Logout'))
